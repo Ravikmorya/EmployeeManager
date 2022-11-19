@@ -1,0 +1,67 @@
+﻿@model EmployeeManagerProject.Models.EmployeeLoginViewModel
+
+@{
+
+    ViewData["Title"] = "Home Page";
+
+}
+
+<div class="container">
+    <br /> <br /> <br />
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h3>Employee Login</h3>
+            </div>
+
+            <div class="card-body">
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                {
+                    if (ViewBag.LoginStatus != null)
+                    {
+                        if (ViewBag.LoginStatus == 0)
+                        {
+                            <div class="alert alert-danger">Invalid User Name</div>
+                        }
+                    }
+                    <div class="input-group form-group">
+
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text">Staff Name</span>
+
+                        </div>
+                        <input type="text" name="StaffName" id="StaffName" placeholder="Staff Name" value="@(ViewBag.SelectedText)" />
+
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Mobile Number</span>
+                        </div>
+                        <input type="text" name="MobileNumber" id="MobileNumber" placeholder="Mobile Number" value="@(ViewBag.SelectedValue)" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Countiue" class="btn btn-primary">
+                    </div>
+
+                    <!-- The Modal Popup Div -->
+                    <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+
+                            <div class="text-left">
+                                @Html.DropDownListFor(m => m.EmpId, new SelectList(Model.EmployeeList, "Value", "Text"), new { @class = "form-control", @style = "width:50%;" })<br />
+                            </div>
+                            <input class="btn btn-primary" type="submit" value="Submit" />
+                            <br />
+                        </div>
+                    </div>
+                }
+                
+            </div>
+            <button class="btn btn-danger" id="myBtn">Add from Contacts</button>
+        </div>
+
+    </div>
+
+</div>
